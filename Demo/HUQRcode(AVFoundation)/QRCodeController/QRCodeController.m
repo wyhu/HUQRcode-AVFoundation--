@@ -43,6 +43,7 @@
  */
 #pragma mark  配置相机属性
 - (void)instanceDevice{
+    
 
     line_tag = 1872637;
     //获取摄像设备
@@ -53,18 +54,13 @@
     AVCaptureMetadataOutput * output = [[AVCaptureMetadataOutput alloc]init];
     //设置代理 在主线程里刷新
     [output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
-
     //设置扫描范围
     [output setRectOfInterest:CGRectMake(160 / ScreenHeight, 75 / ScreenWidth, (ScreenWidth-150) / ScreenHeight, (ScreenWidth-150) / ScreenWidth)];
-    
-    
     //初始化链接对象
-    session = [[AVCaptureSession alloc]init];
+    session = [[AVCaptureSession alloc] init];
     
-        
     //高质量采集率
     [session setSessionPreset:AVCaptureSessionPresetHigh];
-    
     if (input) {
         [session addInput:input];
     }
@@ -145,11 +141,12 @@
         //获取数据成功
         [session stopRunning];
         AVMetadataMachineReadableCodeObject * metadataObject = [metadataObjects objectAtIndex :0];
-
+        
         //输出扫描字符串
         NSString *data = metadataObject.stringValue;
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"扫码成功" message:data delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alert show];
+        
     }else{
         //获取数据失败
     }
@@ -216,10 +213,8 @@
     tiShiLabel.text = @"将二维码放入框内,即可自动扫描";
     [self.view addSubview:tiShiLabel];
     
-    
     //返回按钮
     UIButton *backBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, 30, 40, 40)];
-    
     [backBtn addTarget:self action:@selector(dismissOverlayView:) forControlEvents:UIControlEventTouchUpInside];
     [backBtn setImage:[UIImage imageNamed:@"白色返回_想去"] forState:UIControlStateNormal];
     [self.view addSubview:backBtn];
@@ -230,6 +225,7 @@
     [lightBtn setTitle:@"关闭闪光灯" forState:UIControlStateSelected];
     [lightBtn addTarget:self action:@selector(switchLight:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:lightBtn];
+    
 }
 
 

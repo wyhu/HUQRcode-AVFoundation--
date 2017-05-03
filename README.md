@@ -1,11 +1,6 @@
-# HUQRcode-AVFoundation--
-首次上传
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    
-    QRCodeController *qr = [[QRCodeController alloc] init];
-    
-    [self.navigationController pushViewController:qr animated:YES];
-}
+##备注：该demo是一个关于二维码的实例，使用的是系统框架<AVFoundation>,同时包含二维码生成等功能
+
+###：用法举例：
+
+
 
